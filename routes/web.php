@@ -10,3 +10,5 @@ Route::get('/', function () {
 
 
 // user
+
+Route::post('/user-registration', [UserController::class, 'userRegistration'])->name('userRegistration');
