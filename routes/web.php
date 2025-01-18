@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +17,5 @@ Route::post('/user-login', [UserController::class, 'userLogin'])->name('userLogi
 Route::get('/logout', [UserController::class, 'userLogout'])->name('userLogout');
 Route::post('/send-otp', [UserController::class, 'SendOTPCode'])->name('SendOTPCode');
 Route::post('/verify-otp', [UserController::class, 'VerifyOTP'])->name('VerifyOTP');
+Route::post('/reset-password',[UserController::class,'ResetPassword'])->middleware([TokenVerificationMiddleware::class]);
+
