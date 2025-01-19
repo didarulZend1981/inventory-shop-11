@@ -26,3 +26,4 @@ Route::post('/user-update',[UserController::class,'UpdateProfile'])->middleware(
 
 //Category
 Route::post("/create-category",[CategoryController::class,'CategoryCreate'])->middleware([TokenVerificationMiddleware::class]);
+Route::get("/list-category",[CategoryController::class,'CategoryList'])->middleware([TokenVerificationMiddleware::class]);
