@@ -35,7 +35,11 @@ class CategoryController extends Controller
         ]);
     }
 
-    
+     function CategoryDelete(Request $request){
+        $category_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Category::where('id',$category_id)->where('user_id',$user_id)->delete();
+    }
 
 
 
