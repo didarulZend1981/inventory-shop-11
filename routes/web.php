@@ -41,3 +41,4 @@ Route::post("/create-customer",[CustomerController::class,'CustomerCreate'])->mi
 
 
 Route::post("/create-product",[ProductController::class,'CreateProduct'])->middleware([TokenVerificationMiddleware::class]);
+Route::get("/list-product",[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);

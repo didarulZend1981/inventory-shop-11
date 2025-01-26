@@ -32,6 +32,8 @@ Route::post("/delete-category",[CategoryController::class,'CategoryDelete'])->mi
 Route::post("/create-customer",[CustomerController::class,'CustomerCreate'])->middleware([TokenVerificationAPIMiddleware::class]);
 
 
+
+
 Route::post("/create-category",[CategoryController::class,'CategoryCreate'])->middleware([TokenVerificationAPIMiddleware::class]);
 
 
@@ -40,3 +42,4 @@ Route::post("/create-category",[CategoryController::class,'CategoryCreate'])->mi
 
 
 Route::post("/create-product",[ProductController::class,'CreateProduct'])->middleware([TokenVerificationAPIMiddleware::class]);
+Route::get("/list-product",[ProductController::class,'ProductList'])->middleware([TokenVerificationAPIMiddleware::class]);
