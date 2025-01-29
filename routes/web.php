@@ -53,3 +53,5 @@ Route::post("/invoice-create",[InvoiceController::class,'invoiceCreate'])->middl
 
 Route::get("/invoice-select",[InvoiceController::class,'invoiceSelect'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/invoice-details",[InvoiceController::class,'InvoiceDetails'])->middleware([TokenVerificationMiddleware::class])->name('invoiceDetails');
+
+Route::post("/invoice-delete",[InvoiceController::class,'invoiceDelete'])->middleware([TokenVerificationMiddleware::class])->name('invoiceDelete');
