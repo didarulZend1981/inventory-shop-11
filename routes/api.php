@@ -8,11 +8,11 @@ use App\Http\Middleware\TokenVerificationAPIMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/user-registration', [UserController::class, 'userRegistration'])->name('userRegistration');
-Route::post('/user-login', [UserController::class, 'userLogin'])->name('userLogin');
-Route::get('/logout', [UserController::class, 'userLogout'])->name('userLogout');
-Route::post('/send-otp', [UserController::class, 'SendOTPCode'])->name('SendOTPCode');
-Route::post('/verify-otp', [UserController::class, 'VerifyOTP'])->name('VerifyOTP');
+Route::post('/user-registration', [UserController::class, 'userRegistration']);
+Route::post('/user-login', [UserController::class, 'userLogin']);
+Route::get('/logout', [UserController::class, 'userLogout']);
+Route::post('/send-otp', [UserController::class, 'SendOTPCode']);
+Route::post('/verify-otp', [UserController::class, 'VerifyOTP']);
 
 Route::post('/reset-password',[UserController::class,'ResetPassword'])->middleware([TokenVerificationAPIMiddleware::class]);
 
@@ -35,9 +35,6 @@ Route::post("/create-customer",[CustomerController::class,'CustomerCreate'])->mi
 
 
 Route::post("/create-category",[CategoryController::class,'CategoryCreate'])->middleware([TokenVerificationAPIMiddleware::class]);
-
-
-
 
 
 
