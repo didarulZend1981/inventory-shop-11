@@ -15,7 +15,7 @@ class InvoiceController extends Controller
     {
 
        
-        // DB::beginTransaction();
+         DB::beginTransaction();
 
         try {
             $user_id = $request->header('id');
@@ -50,12 +50,25 @@ class InvoiceController extends Controller
                 ]);
             }
 
-            // DB::commit();
+            DB::commit();
 
             return 1;
         } catch (Exception $e) {
-            // DB::rollBack();
-            return $e->getMessage();
+           DB::rollBack();
+            // return $e->getMessage();
         }
     }
+
+    function invoiceSelect(Request $request){
+        $user_id=$request->header('id');
+        return Invoice::where('user_id',$user_id)->with('customer')->get();
+    }
+
+
+
+
+
+
+
+
 }
