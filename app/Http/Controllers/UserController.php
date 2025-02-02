@@ -6,11 +6,33 @@ use App\Helper\JWTToken;
 use App\Mail\OTPMail;
 use App\Models\User;
 use Exception;
+use Illuminate\View\View;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
+
+    function LoginPage():View{
+        return view('pages.auth.login-page');
+    }
+    function RegistrationPage():View{
+        return view('pages.auth.registration-page');
+    }
+    function SendOtpPage():View{
+        return view('pages.auth.send-otp-page');
+    }
+    function VerifyOTPPage():View{
+        return view('pages.auth.verify-otp-page');
+    }
+
+
+
+    
+
+
+
+
     function UserRegistration(Request $request){
 
         try {
@@ -37,20 +59,40 @@ class UserController extends Controller
     }
 
     function UserLogin(Request $request){
+        // dd($request->all);
+
+        
 
         $count=User::where('email','=',$request->input('email'))
             ->where('password','=',$request->input('password'))
             ->select('id')->first();
 
+        //     return response()->json([
+        //         'email' => $request->input('email'),
+        //         'password' => $request->input('password'),
+        //         'dataUser'=>$count
+        //    ]);
 
         if($count!==null){
             // User Login-> JWT Token Issue
+
+            //     return response()->json([
+            //     'email' => $request->input('email'),
+            //     'password' => $request->input('password'),
+            //     'dataUser'=>$count,
+            //     'status' => 'success',
+            //      'message' => 'User Login Successful',
+                 
+            //    ]);
+
             $token=JWTToken::CreateToken($request->input('email'),$count->id);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User Login Successful',
                 'token'=>$token
             ],200)->cookie('token',$token,time()+60*24*30);
+
+            
         }
         else{
             return response()->json([
