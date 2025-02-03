@@ -18,10 +18,12 @@ Route::get('/',[UserController::class,'LoginPage']);
 Route::get('/userRegistration',[UserController::class,'RegistrationPage']);
 Route::get('/sendOtp',[UserController::class,'SendOtpPage']);
 Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
+Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middleware([TokenVerificationMiddleware::class]);
 
 
-// dashbord page layout
 Route::get('/dashboard',[DashBoardController::class,'DashboardPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/userProfile',[UserController::class,'ProfilePage'])->middleware([TokenVerificationMiddleware::class]);
+
 
 
 
