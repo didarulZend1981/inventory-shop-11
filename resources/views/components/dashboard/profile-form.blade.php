@@ -38,3 +38,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+    async function getProfile(){
+        showLoader();
+        let res=await axios.get("/user-profile")
+        console.log("testriokkk---------",res.data['data']['email'])
+
+        hideLoader();
+        if(res.status===200 && res.data['status']==='success'){
+            let data=res.data['data'];
+            document.getElementById('email').value=data['email'];
+            document.getElementById('name').value=data['name'];
+            document.getElementById('mobile').value=data['mobile'];
+            document.getElementById('password').value=data['password'];
+        }
+        else{
+            errorToast(res.data['message'])
+        }
+
+    }
+    getProfile();
+</script>
