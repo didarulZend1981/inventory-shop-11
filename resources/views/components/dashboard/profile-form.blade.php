@@ -10,7 +10,7 @@
                             
                             <div class="col-full p-2">
                                 <label>Full Name</label> 
-                                <input id="name" placeholder="Full Name" class="form-control" type="text"/>
+                                <input id="name" placeholder="Name" class="form-control" type="text"/>
                             </div>
 
                             <div class="col-full p-2">
@@ -60,4 +60,45 @@
 
     }
     getProfile();
+
+
+    async function onUpdate() {
+
+
+      
+        let name = document.getElementById('name').value;
+        let mobile = document.getElementById('mobile').value;
+        let password = document.getElementById('password').value;
+
+       
+
+        if(name.length===0){
+            errorToast('name')
+        }
+        
+        else if(mobile.length===0){
+            errorToast('Mobile is required')
+        }
+        else if(password.length===0){
+            errorToast('Password is required')
+        }
+        else{
+            showLoader();
+            let res=await axios.post("/user-update",{
+                name:name,
+                mobile:mobile,
+                password:password
+            })
+            hideLoader();
+            if(res.status===200 && res.data['status']==='success'){
+                successToast(res.data['message']);
+                await getProfile();
+            }
+            else{
+                    errorToast(res.data['message'])
+                }
+            }
+        }
+
+
 </script>
