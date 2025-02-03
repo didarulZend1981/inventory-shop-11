@@ -77,23 +77,11 @@ class UserController extends Controller{
             ->where('password','=',$request->input('password'))
             ->select('id')->first();
 
-        //     return response()->json([
-        //         'email' => $request->input('email'),
-        //         'password' => $request->input('password'),
-        //         'dataUser'=>$count
-        //    ]);
+  
 
         if($count!==null){
             // User Login-> JWT Token Issue
 
-            //     return response()->json([
-            //     'email' => $request->input('email'),
-            //     'password' => $request->input('password'),
-            //     'dataUser'=>$count,
-            //     'status' => 'success',
-            //      'message' => 'User Login Successful',
-                 
-            //    ]);
 
             $token=JWTToken::CreateToken($request->input('email'),$count->id);
             return response()->json([

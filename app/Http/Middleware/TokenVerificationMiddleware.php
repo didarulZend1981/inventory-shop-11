@@ -21,7 +21,9 @@ class TokenVerificationMiddleware
         $result=JWTToken::VerifyToken($token);
 
         if($result=="unauthorized"){
-            return response()->json(['message' => 'unauthorized'], 401);
+
+            return redirect('/'); //userLogin;
+            // return response()->json(['message' => 'unauthorized'], 401);  // checking postman
         }
         else{
             $request->headers->set('email',$result->userEmail);

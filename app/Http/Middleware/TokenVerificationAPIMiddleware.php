@@ -14,14 +14,14 @@ class TokenVerificationAPIMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
+    public function handle(Request $request, Closure $next): Response{
 
         $token=$request->header('token');
         $result=JWTToken::VerifyToken($token);
 
         if($result=="unauthorized"){
-            return response()->json(['message' => 'unauthorized'], 401);
+            return redirect('/'); //userLogin;
+            // return response()->json(['message' => 'unauthorized'], 401); // checking postman
         }
         else{
             $request->headers->set('email',$result->userEmail);
