@@ -33,7 +33,6 @@
 <script>
         getList();
 
-
         async function getList() {
 
             showLoader();
