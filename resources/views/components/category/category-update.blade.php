@@ -24,3 +24,14 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    async function FillUpUpdateForm(id){
+        document.getElementById('updateID').value=id;
+        showLoader();
+        let res=await axios.post("/category-by-id",{id:id})
+        hideLoader();
+        document.getElementById('categoryNameUpdate').value=res.data['name'];
+    }
+</script>
