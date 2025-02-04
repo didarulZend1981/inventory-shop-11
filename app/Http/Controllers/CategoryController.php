@@ -24,7 +24,8 @@ class CategoryController extends Controller
 
     function CategoryList(Request $request){
         $user_id=$request->header('id');
-        return Category::where('user_id',$user_id)->get();
+        return Category::all();
+        // return Category::where('user_id',$user_id)->get();
     }
 
     function CategoryByID(Request $request){
