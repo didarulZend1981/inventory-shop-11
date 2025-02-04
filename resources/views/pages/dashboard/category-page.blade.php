@@ -1,1 +1,5 @@
-<h2>category page</h2>
+@extends('layout.sidenav-layout')
+@section('content')
+    @include('components.category.category-list')
+    
+@endsection
