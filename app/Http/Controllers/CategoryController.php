@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+
+    function CategoryPage(){
+        return view('pages.dashboard.category-page');
+    }
+
+
     function CategoryCreate(Request $request){
         $user_id=$request->header('id');
         return Category::create([
