@@ -29,3 +29,47 @@
     </div>
 </div>
 </div>
+
+<script>
+
+getList();
+
+
+async function getList() {
+
+
+    showLoader();
+    let res=await axios.get("/list-product");
+    hideLoader();
+
+    let tableList=$("#tableList");
+    let tableData=$("#tableData");
+
+    tableData.DataTable().destroy();
+    tableList.empty();
+
+    res.data.forEach(function (item,index) {
+        let row=`<tr>
+                    <td><img class="w-15 h-auto" alt="" src="${item['img_url']}"></td>
+                    <td>${item['name']}</td>
+                    <td>${item['price']}</td>
+                    <td>${item['unit']}</td>
+                    <td>
+                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
+                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
+                    </td>
+                 </tr>`
+        tableList.append(row)
+    })
+
+   
+
+    new DataTable('#tableData',{
+        order:[[0,'desc']],
+        lengthMenu:[5,10,15,20,30]
+    });
+
+}
+
+
+</script>

@@ -46,7 +46,8 @@ class ProductController extends Controller
 
     function ProductList(Request $request){
         $user_id=$request->header('id');
-        return Product::where('user_id',$user_id)->get();
+        return Product::all();
+        // return Product::where('user_id',$user_id)->get();
     }
 
 
