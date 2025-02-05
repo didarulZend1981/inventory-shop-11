@@ -62,6 +62,15 @@ async function getList() {
         tableList.append(row)
     })
 
+
+    $('.deleteBtn').on('click',function () {
+        let id= $(this).data('id');
+        let path= $(this).data('path');
+        $("#delete-modal").modal('show');
+        $("#deleteID").val(id);
+        $("#deleteFilePath").val(path)
+
+    })
    
 
     new DataTable('#tableData',{
