@@ -72,6 +72,10 @@ async function getList() {
 
     })
    
+     $('.editBtn').on('click', async function () {
+           let id= $(this).data('id');
+           $("#update-modal").modal('show');
+     })
 
     new DataTable('#tableData',{
         order:[[0,'desc']],
