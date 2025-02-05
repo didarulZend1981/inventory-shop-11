@@ -1,4 +1,4 @@
 @extends('layout.sidenav-layout')
 @section('content')
-   <h2>product page</h2>
+@include('components.product.product-list')
 @endsection
