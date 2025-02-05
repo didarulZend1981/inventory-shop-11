@@ -48,4 +48,40 @@
         </div>
     </div>
 </div>
+<script>
 
+
+
+    async function UpdateFillCategoryDropDown(){
+        let res = await axios.get("/list-category")
+        res.data.forEach(function (item,i) {
+            let option=`<option value="${item['id']}">${item['name']}</option>`
+            $("#productCategoryUpdate").append(option);
+        })
+    }
+
+
+    async function FillUpUpdateForm(id,filePath){
+
+        document.getElementById('updateID').value=id;
+        document.getElementById('filePath').value=filePath;
+        document.getElementById('oldImg').src=filePath;
+
+
+        showLoader();
+        await UpdateFillCategoryDropDown();
+
+        let res=await axios.post("/product-by-id",{id:id})
+        hideLoader();
+
+        document.getElementById('productNameUpdate').value=res.data['name'];
+        document.getElementById('productPriceUpdate').value=res.data['price'];
+        document.getElementById('productUnitUpdate').value=res.data['unit'];
+        document.getElementById('productCategoryUpdate').value=res.data['category_id'];
+
+    }
+
+
+
+    
+</script>

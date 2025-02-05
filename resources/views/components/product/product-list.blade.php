@@ -72,10 +72,12 @@ async function getList() {
 
     })
    
-     $('.editBtn').on('click', async function () {
+    $('.editBtn').on('click', async function () {
            let id= $(this).data('id');
+           let filePath= $(this).data('path');
+           await FillUpUpdateForm(id,filePath)
            $("#update-modal").modal('show');
-     })
+    })
 
     new DataTable('#tableData',{
         order:[[0,'desc']],
