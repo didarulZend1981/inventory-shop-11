@@ -14,6 +14,11 @@
                 </div>
 </div>
 
+
+
+@include('components.invoice.invoice-form.product-add-form')
+
+
 <script>
 
 (async ()=>{

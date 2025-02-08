@@ -11,30 +11,4 @@
     </div>
 
 
-
-
-              @include('components.invoice.invoice-form.product-add-form')
-
-              @include('components.invoice.invoice-form.customer-create')
-
-
-
-
-
-
-<script>
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
 @endsection

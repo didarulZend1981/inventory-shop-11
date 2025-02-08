@@ -14,6 +14,8 @@
                 </div>
 </div>
 
+@include('components.invoice.invoice-form.customer-create')
+
 
 <script>
 
