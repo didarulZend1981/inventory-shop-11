@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
     <div class="row">
     <div class="col-md-12 col-sm-12 col-lg-12">
@@ -45,6 +46,8 @@ async function getList() {
     let tableList=$("#tableList");
     let tableData=$("#tableData");
 
+   
+
     tableData.DataTable().destroy();
     tableList.empty();
 
@@ -79,12 +82,16 @@ async function getList() {
            $("#update-modal").modal('show');
     })
 
+
     new DataTable('#tableData',{
         order:[[0,'desc']],
         lengthMenu:[5,10,15,20,30]
     });
 
 }
+
+
+
 
 
 </script>

@@ -6,12 +6,17 @@ use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    function SalePage():View{
+        return view('pages.dashboard.sale-page');
+    }
+
     function invoiceCreate(Request $request)
     {
 

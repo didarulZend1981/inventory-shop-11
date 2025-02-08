@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+
+
+    function CustomerList(Request $request){
+        $user_id=$request->header('id');
+        return Customer::where('user_id',$user_id)->get();
+    }
+
+
     function CustomerCreate(Request $request){
 
         try {
             $user_id=$request->header('id');
-           
+
             Customer::create([
                 'name'=>$request->input('name'),
                 'email'=>$request->input('email'),
@@ -22,15 +30,15 @@ class CustomerController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Customer create Successfully'
-            ],200);
+            ],201);
         }
 
         catch (Exception $e) {
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()],200);
+            return response()->json(['status' => 'failed', 'message' => $e->getMessage()],201);
         }
 
-        
-       
+
+
     }
 
 
