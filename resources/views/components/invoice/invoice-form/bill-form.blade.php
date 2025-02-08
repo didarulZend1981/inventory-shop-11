@@ -51,3 +51,118 @@
                     </div>
                 </div>
             </div>
+
+
+        <script>
+
+let InvoiceItemList=[];
+
+
+function ShowInvoiceItem() {
+
+    let invoiceList=$('#invoiceList');
+
+    invoiceList.empty();
+
+    InvoiceItemList.forEach(function (item,index) {
+        let row=`<tr class="text-xs">
+                <td>${item['product_name']}</td>
+                <td>${item['qty']}</td>
+                <td>${item['sale_price']}</td>
+                <td><a data-index="${index}" class="btn remove text-xxs px-2 py-1  btn-sm m-0">Remove</a></td>
+             </tr>`
+        invoiceList.append(row)
+    })
+
+    CalculateGrandTotal();
+
+    $('.remove').on('click', async function () {
+        let index= $(this).data('index');
+        removeItem(index);
+    })
+
+}
+
+
+function removeItem(index) {
+    InvoiceItemList.splice(index,1);
+    ShowInvoiceItem()
+}
+
+function DiscountChange() {
+    CalculateGrandTotal();
+}
+
+function CalculateGrandTotal(){
+    let Total=0;
+    let Vat=0;
+    let Payable=0;
+    let Discount=0;
+    let discountPercentage=(parseFloat(document.getElementById('discountP').value));
+
+    InvoiceItemList.forEach((item,index)=>{
+        Total=Total+parseFloat(item['sale_price'])
+    })
+
+     if(discountPercentage===0){
+         Vat= ((Total*5)/100).toFixed(2);
+     }
+     else {
+         Discount=((Total*discountPercentage)/100).toFixed(2);
+         Total=(Total-((Total*discountPercentage)/100)).toFixed(2);
+         Vat= ((Total*5)/100).toFixed(2);
+     }
+
+     Payable=(parseFloat(Total)+parseFloat(Vat)).toFixed(2);
+
+
+    document.getElementById('total').innerText=Total;
+    document.getElementById('payable').innerText=Payable;
+    document.getElementById('vat').innerText=Vat;
+    document.getElementById('discount').innerText=Discount;
+}
+
+
+async  function createInvoice() {
+    let total=document.getElementById('total').innerText;
+    let discount=document.getElementById('discount').innerText
+    let vat=document.getElementById('vat').innerText
+    let payable=document.getElementById('payable').innerText
+    let CId=document.getElementById('CId').innerText;
+
+
+    let Data={
+        "total":total,
+        "discount":discount,
+        "vat":vat,
+        "payable":payable,
+        "customer_id":CId,
+        "products":InvoiceItemList
+    }
+
+
+    if(CId.length===0){
+        errorToast("Customer Required !")
+    }
+    else if(InvoiceItemList.length===0){
+        errorToast("Product Required !")
+    }
+    else{
+
+        showLoader();
+        let res=await axios.post("/invoice-create",Data)
+        hideLoader();
+        if(res.data===1){
+            window.location.href='/invoicePage'
+            successToast("Invoice Created");
+        }
+        else{
+            errorToast("Something Went Wrong")
+        }
+    }
+
+}
+
+
+
+        </script>
