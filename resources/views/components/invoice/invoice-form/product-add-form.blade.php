@@ -20,6 +20,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button id="resetId" type="reset" hidden></button>
                     </form>
                 </div>
                 <div class="modal-footer">

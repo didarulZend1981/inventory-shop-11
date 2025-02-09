@@ -81,6 +81,7 @@ function add() {
    else{
        let item={product_name:PName,product_id:PId,qty:PQty,sale_price:PTotalPrice};
        InvoiceItemList.push(item);
+       document.getElementById('resetId').click();
        console.log(InvoiceItemList);
        $('#create-modal').modal('hide')
        ShowInvoiceItem();
