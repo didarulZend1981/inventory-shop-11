@@ -46,6 +46,42 @@ class BrandController extends Controller
         return Brand::where('id',$brand_id)->where('user_id',$user_id)->first();
     }
 
+    function UpdateBrand(Request $request){
+        $user_id=$request->header('id');
+        $product_id=$request->input('id');
+
+        if ($request->hasFile('img')) {
+
+            // Upload New File
+            $img=$request->file('img');
+            $t=time();
+            $file_name=$img->getClientOriginalName();
+            $img_name="{$user_id}-{$t}-{$file_name}";
+            $img_url="uploads/{$img_name}";
+            $img->move(public_path('uploads'),$img_name);
+
+            // Delete Old File
+            $filePath=$request->input('file_path');
+            File::delete($filePath);
+
+            // Update Product
+
+            return Brand::where('id',$product_id)->where('user_id',$user_id)->update([
+                'name'=>$request->input('name'),
+                'status'=>$request->input('status'),
+                'img_url'=>$img_url,
+
+            ]);
+        }
+
+        else {
+            return Brand::where('id',$product_id)->where('user_id',$user_id)->update([
+               'name'=>$request->input('name'),
+               'status'=>$request->input('status'),
+            ]);
+        }
+    }
+
 
 
 
