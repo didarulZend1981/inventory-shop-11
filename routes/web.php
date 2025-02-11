@@ -60,7 +60,7 @@ Route::get("/list-customer",[CustomerController::class,'CustomerList'])->middlew
 //Brand API
 Route::post("/create-brand",[BrandController::class,'CreateBrand'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-brand",[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
-
+Route::post("/brand-by-id",[BrandController::class,'BrandByID'])->middleware([TokenVerificationMiddleware::class]);
 
 
 

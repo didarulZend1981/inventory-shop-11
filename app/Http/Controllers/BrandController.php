@@ -40,6 +40,12 @@ class BrandController extends Controller
         // return Brand::where('user_id',$user_id)->get();
     }
 
+    function BrandByID(Request $request){
+        $user_id=$request->header('id');
+        $brand_id=$request->input('id');
+        return Brand::where('id',$brand_id)->where('user_id',$user_id)->first();
+    }
+
 
 
 
