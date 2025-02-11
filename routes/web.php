@@ -7,6 +7,7 @@ use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,12 @@ Route::get("/list-brand",[BrandController::class,'BrandList'])->middleware([Toke
 Route::post("/brand-by-id",[BrandController::class,'BrandByID'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/update-brand",[BrandController::class,'UpdateBrand'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/delete-brand",[BrandController::class,'DeleteBrand'])->middleware([TokenVerificationMiddleware::class]);
+
+
+
+//Supplier API
+Route::post("/create-supplier",[SupplierController::class,'SupplierCreate'])->middleware([TokenVerificationMiddleware::class]);
+
 
 
 
