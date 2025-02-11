@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashBoardController;
@@ -56,9 +57,14 @@ Route::post("/delete-category",[CategoryController::class,'CategoryDelete'])->mi
 Route::post("/create-customer",[CustomerController::class,'CustomerCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-customer",[CustomerController::class,'CustomerList'])->middleware([TokenVerificationMiddleware::class]);
 
+//Brand API
+Route::post("/create-brand",[BrandController::class,'CreateBrand'])->middleware([TokenVerificationMiddleware::class]);
+Route::get("/list-brand",[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
 
 
 
+
+//Product API
 Route::post("/create-product",[ProductController::class,'CreateProduct'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-product",[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/product-by-id",[ProductController::class,'ProductByID'])->middleware([TokenVerificationMiddleware::class]);
