@@ -62,7 +62,7 @@ Route::post("/create-brand",[BrandController::class,'CreateBrand'])->middleware(
 Route::get("/list-brand",[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/brand-by-id",[BrandController::class,'BrandByID'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/update-brand",[BrandController::class,'UpdateBrand'])->middleware([TokenVerificationMiddleware::class]);
-
+Route::post("/delete-brand",[BrandController::class,'DeleteBrand'])->middleware([TokenVerificationMiddleware::class]);
 
 
 

@@ -83,6 +83,14 @@ class BrandController extends Controller
     }
 
 
+    function DeleteBrand(Request $request){
+        $user_id=$request->header('id');
+        $product_id=$request->input('id');
+        $filePath=$request->input('file_path');
+        File::delete($filePath);
+        return Brand::where('id',$product_id)->where('user_id',$user_id)->delete();
+
+    }
 
 
 
