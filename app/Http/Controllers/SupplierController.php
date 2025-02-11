@@ -36,6 +36,12 @@ class SupplierController extends Controller
     }
 
 
+    function SupplierList(Request $request){
+        $user_id=$request->header('id');
+        return Supplier::where('user_id',$user_id)->get();
+    }
+
+
 
 
 
