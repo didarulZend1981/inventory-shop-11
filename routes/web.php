@@ -70,6 +70,11 @@ Route::post("/delete-brand",[BrandController::class,'DeleteBrand'])->middleware(
 //Supplier API
 Route::post("/create-supplier",[SupplierController::class,'SupplierCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-supplier",[SupplierController::class,'SupplierList'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/supplier-by-id",[SupplierController::class,'SupplierByID'])->middleware([TokenVerificationMiddleware::class]);
+
+
+
+
 
 
 
