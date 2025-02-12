@@ -44,6 +44,12 @@ class ProductNameController extends Controller
         // return Brand::where('user_id',$user_id)->get();
     }
 
+    function ProductNameID(Request $request){
+        $user_id=$request->header('id');
+        $product_name_id=$request->input('id');
+        return ProductName::where('id',$product_name_id)->where('user_id',$user_id)->first();
+    }
+
 
 
 
