@@ -47,6 +47,29 @@ class SupplierController extends Controller
         return Supplier::where('id',$Supplier_id)->where('user_id',$user_id)->first();
     }
 
+    function SupplierUpdate(Request $request){
+        $supplier_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Supplier::where('id',$supplier_id)->where('user_id',$user_id)->update([
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'mobile'=>$request->input('mobile'),
+            'address'=>$request->input('address'),
+            'companyName'=>$request->input('companyName'),
+
+
+        ]);
+    }
+
+
+    function SupplierDelete(Request $request){
+        $supplier_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Supplier::where('id',$supplier_id)->where('user_id',$user_id)->delete();
+    }
+
+
+
 
 
 
