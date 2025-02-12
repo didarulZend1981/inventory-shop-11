@@ -56,6 +56,8 @@ Route::post("/update-category",[CategoryController::class,'CategoryUpdate'])->mi
 Route::post("/delete-category",[CategoryController::class,'CategoryDelete'])->middleware([TokenVerificationMiddleware::class]);
 
 
+//customer API
+
 Route::post("/create-customer",[CustomerController::class,'CustomerCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-customer",[CustomerController::class,'CustomerList'])->middleware([TokenVerificationMiddleware::class]);
 
@@ -82,6 +84,9 @@ Route::post("/create-product-name",[ProductNameController::class,'CreateProductN
 Route::get("/list-product-name",[ProductNameController::class,'ProductNameList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/product-name-by-id",[ProductNameController::class,'ProductNameID'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/update-product-name",[ProductNameController::class,'UpdateProductName'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/delete-product-name",[ProductNameController::class,'DeleteProductName'])->middleware([TokenVerificationMiddleware::class]);
+
+
 
 
 

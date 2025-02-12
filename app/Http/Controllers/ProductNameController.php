@@ -97,4 +97,20 @@ class ProductNameController extends Controller
 
 
 
+
+    function DeleteProductName(Request $request){
+        $user_id=$request->header('id');
+        $product_name_id=$request->input('id');
+        $filePath=$request->input('file_path');
+        File::delete($filePath);
+        return ProductName::where('id',$product_name_id)->where('user_id',$user_id)->delete();
+
+    }
+
+
+
+
+
+
+
 }
