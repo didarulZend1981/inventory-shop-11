@@ -52,5 +52,49 @@ class ProductNameController extends Controller
 
 
 
+    function UpdateProductName(Request $request){
+
+
+        $user_id=$request->header('id');
+        $product_name_id=$request->input('id');
+
+        if ($request->hasFile('img')) {
+
+            // Upload New File
+            $img=$request->file('img');
+            $t=time();
+            $file_name=$img->getClientOriginalName();
+            $img_name="{$user_id}-{$t}-{$file_name}";
+            $img_url="uploads/{$img_name}";
+            $img->move(public_path('uploads'),$img_name);
+
+            // Delete Old File
+            $filePath=$request->input('file_path');
+            File::delete($filePath);
+
+            // Update Product
+            // dd($request->all());
+            return ProductName::where('id',$product_name_id)->where('user_id',$user_id)->update([
+                'name'=>$request->input('name'),
+                'status'=>$request->input('status'),
+                'category_id'=>$request->input('category_id'),
+                'brand_id'=>$request->input('brand_id'),
+                'img_url'=>$img_url,
+
+            ]);
+        }
+
+        else {
+            return ProductName::where('id',$product_name_id)->where('user_id',$user_id)->update([
+               'name'=>$request->input('name'),
+               'status'=>$request->input('status'),
+               'category_id'=>$request->input('category_id'),
+               'brand_id'=>$request->input('brand_id'),
+            ]);
+        }
+    }
+
+
+
 
 }

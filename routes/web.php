@@ -81,6 +81,7 @@ Route::post("/delete-supplier",[SupplierController::class,'SupplierDelete'])->mi
 Route::post("/create-product-name",[ProductNameController::class,'CreateProductName'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/list-product-name",[ProductNameController::class,'ProductNameList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/product-name-by-id",[ProductNameController::class,'ProductNameID'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/update-product-name",[ProductNameController::class,'UpdateProductName'])->middleware([TokenVerificationMiddleware::class]);
 
 
 
