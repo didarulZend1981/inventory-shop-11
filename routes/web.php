@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductNameController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -75,10 +76,10 @@ Route::post("/update-supplier",[SupplierController::class,'SupplierUpdate'])->mi
 Route::post("/delete-supplier",[SupplierController::class,'SupplierDelete'])->middleware([TokenVerificationMiddleware::class]);
 
 
+//ProductName API
 
-
-
-
+Route::post("/create-product-name",[ProductNameController::class,'CreateProductName'])->middleware([TokenVerificationMiddleware::class]);
+Route::get("/list-product-name",[ProductNameController::class,'ProductNameList'])->middleware([TokenVerificationMiddleware::class]);
 
 
 

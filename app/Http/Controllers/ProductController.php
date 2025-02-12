@@ -16,8 +16,7 @@ class ProductController extends Controller
 
 
 
-    function CreateProduct(Request $request)
-    {
+    function CreateProduct(Request $request){
         $user_id=$request->header('id');
 
         // Prepare File Name & Path

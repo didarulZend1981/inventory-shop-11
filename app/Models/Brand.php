@@ -11,5 +11,9 @@ class Brand extends Model
         'name','status','img_url','user_id'
     ];
 
+    public function productNames(){
+        return $this->hasMany('App\Models\ProductName');
+    }
+
 
 }
