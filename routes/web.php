@@ -34,6 +34,7 @@ Route::get('/invoicePage',[InvoiceController::class,'InvoicePage'])->middleware(
 Route::get('/reportPage',[ReportController::class,'ReportPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/brandPage',[BrandController::class,'BrandPage'])->middleware([TokenVerificationMiddleware::class]);
 
+Route::get('/supplierPage',[SupplierController::class,'SupplierPage'])->middleware([TokenVerificationMiddleware::class]);
 
 // user
 

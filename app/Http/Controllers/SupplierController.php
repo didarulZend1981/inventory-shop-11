@@ -8,7 +8,14 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+
+    function SupplierPage(){
+        return view('pages.dashboard.supplier-page');
+    }
+
+
     function SupplierCreate(Request $request){
+        // dd($request->all());
 
         try {
             $user_id=$request->header('id');
@@ -27,6 +34,7 @@ class SupplierController extends Controller
             ],200);
         }
 
+
         catch (Exception $e) {
             return response()->json(['status' => 'failed', 'message' => $e->getMessage()],201);
         }
@@ -38,7 +46,8 @@ class SupplierController extends Controller
 
     function SupplierList(Request $request){
         $user_id=$request->header('id');
-        return Supplier::where('user_id',$user_id)->get();
+        // return Supplier::where('user_id',$user_id)->get();
+        return Supplier::all();
     }
 
     function SupplierByID(Request $request){

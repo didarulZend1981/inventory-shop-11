@@ -96,7 +96,7 @@
         let productImgUpdate = document.getElementById('productImgUpdate').files[0];
 
 
-        console.log(productImgUpdate)
+        console.log(productImgUpdate);
 
         if (statusUpdate.length === 0) {
             errorToast("Product Category Required !");
@@ -140,4 +140,12 @@
 
 
     }
+
+
+
+
+
+
+
+
 </script>

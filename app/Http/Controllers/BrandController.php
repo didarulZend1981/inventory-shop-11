@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -53,9 +54,10 @@ class BrandController extends Controller
     }
 
     function UpdateBrand(Request $request){
-        dd($request->all());
+        //  return response()->json($request->all());
+       try{
         $user_id=$request->header('id');
-        $product_id=$request->input('id');
+        $brand_id=$request->input('id');
 
         if ($request->hasFile('img')) {
 
@@ -71,22 +73,40 @@ class BrandController extends Controller
             $filePath=$request->input('file_path');
             File::delete($filePath);
 
-            // Update Product
+            // Update brand
 
-            return Brand::where('id',$product_id)->where('user_id',$user_id)->update([
+            // return Brand::where('id',$brand_id)->where('user_id',$user_id)->update([
+            //     'name'=>$request->input('name'),
+            //     'status'=>$request->input('status'),
+            //     'img_url'=>$img_url,
+            // ]);
+
+            return Brand::where('id',$brand_id)->update([
                 'name'=>$request->input('name'),
                 'status'=>$request->input('status'),
                 'img_url'=>$img_url,
-
             ]);
+
+
+
+
         }
 
         else {
-            return Brand::where('id',$product_id)->where('user_id',$user_id)->update([
-               'name'=>$request->input('name'),
-               'status'=>$request->input('status'),
-            ]);
+            // return Brand::where('id',$brand_id)->where('user_id',$user_id)->update([
+            //    'name'=>$request->input('name'),
+            //    'status'=>$request->input('status'),
+            // ]);
+
+            return Brand::where('id',$brand_id)->update([
+                'name'=>$request->input('name'),
+                'status'=>$request->input('status'),
+             ]);
+
         }
+       } catch(\Exception $ex){
+        return response()->json($ex->getMessage());
+       }
     }
 
 
@@ -96,7 +116,9 @@ class BrandController extends Controller
         $filePath=$request->input('file_path');
         File::delete($filePath);
         // dd($user_id);
-        return Brand::where('id',$product_id)->where('user_id',$user_id)->delete();
+        // return Brand::where('id',$product_id)->where('user_id',$user_id)->delete();
+
+        return Brand::where('id',$product_id)->delete();
 
     }
 
