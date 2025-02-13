@@ -86,6 +86,10 @@
         <i class="bi bi-list-nested"></i>
         <span class="side-bar-item-caption">Category</span>
     </a>
+    <a href="{{url("/brandPage")}}" class="side-bar-item">
+        <i class="bi bi-list-nested"></i>
+        <span class="side-bar-item-caption">Brand</span>
+    </a>
 
     <a href="{{url("/productPage")}}" class="side-bar-item">
         <i class="bi bi-bag"></i>

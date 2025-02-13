@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
+
+    function BrandPage(){
+        return view('pages.dashboard.brand-page');
+    }
+
     function CreateBrand(Request $request){
         $user_id=$request->header('id');
 
@@ -43,10 +48,12 @@ class BrandController extends Controller
     function BrandByID(Request $request){
         $user_id=$request->header('id');
         $brand_id=$request->input('id');
-        return Brand::where('id',$brand_id)->where('user_id',$user_id)->first();
+        // return Brand::where('id',$brand_id)->where('user_id',$user_id)->first();
+        return Brand::where('id',$brand_id)->first();
     }
 
     function UpdateBrand(Request $request){
+        dd($request->all());
         $user_id=$request->header('id');
         $product_id=$request->input('id');
 
@@ -88,6 +95,7 @@ class BrandController extends Controller
         $product_id=$request->input('id');
         $filePath=$request->input('file_path');
         File::delete($filePath);
+        // dd($user_id);
         return Brand::where('id',$product_id)->where('user_id',$user_id)->delete();
 
     }

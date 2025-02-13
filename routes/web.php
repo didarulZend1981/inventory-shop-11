@@ -32,7 +32,7 @@ Route::get('/productPage',[ProductController::class,'ProductPage'])->middleware(
 Route::get('/salePage',[InvoiceController::class,'SalePage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/invoicePage',[InvoiceController::class,'InvoicePage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/reportPage',[ReportController::class,'ReportPage'])->middleware([TokenVerificationMiddleware::class]);
-
+Route::get('/brandPage',[BrandController::class,'BrandPage'])->middleware([TokenVerificationMiddleware::class]);
 
 
 // user
